@@ -1,0 +1,28 @@
+name: Whitelist Bastion Users
+
+on:
+  push:
+    branches: [ main ]
+    paths: [ whitelist.yaml ]
+  pull_request:
+    branches: [ main ]
+    paths: [ whitelist.yaml ]
+
+env:
+  AWS_SESSION_DURATION: 3600
+
+jobs:
+  setup:
+    name: Setup Run
+    runs-on: ubuntu-latest
+    run: |
+      echo "Hi"
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: "false"
+      - name: Determine Environment
+        run: |
+          echo "Hello"

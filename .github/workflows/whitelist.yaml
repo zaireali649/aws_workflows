@@ -4,6 +4,9 @@ on:
   push:
     branches: [ main ]
     paths: [ whitelist.yaml ]
+  pull_request:
+    branches: [ main ]
+    paths: [ whitelist.yaml ]
 
 env:
   AWS_SESSION_DURATION: 3600

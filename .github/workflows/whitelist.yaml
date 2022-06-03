@@ -2,10 +2,8 @@ name: Whitelist Bastion Users
 
 on:
   push:
-    branches:
-      - main
-    paths:
-      - whitelist.yaml
+    branches: [ main ]
+    paths: [ whitelist.yaml ]
 
 env:
   AWS_SESSION_DURATION: 3600

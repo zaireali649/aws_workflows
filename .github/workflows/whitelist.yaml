@@ -7,13 +7,9 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
-    paths: [ whitelist.yaml ]
   pull_request:
     branches: [ main ]
-    paths: [ whitelist.yaml ]
 
-env:
-  AWS_SESSION_DURATION: 3600
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:

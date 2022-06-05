@@ -29,17 +29,16 @@ jobs:
       - name: Run AWS Commands
         run: |
           aws ssm get-parameter --name '/ssh/whitelist' --query 'Parameter.{Value:Value}' --output text
-          echo ${prefix_list-id}
 
 
           # use aws cli to update the prefix list with the values in whitelist.yaml
           # id of prefix list will be in SSM Parameter Store at key ssh/whitelist
           
-          aws ec2 modify-managed-prefix-list --prefix-list-id "aws ssm get-parameter --name '/ssh/whitelist' --query 'Parameter.{Value:Value}' --output text" \
+          aws ec2 modify-managed-prefix-list --prefix-list-id ${PREFIX_LIST_ID} \
             --add-entries Cidr=54.239.134.0/23 \
             --current-version 1
 
-          aws ec2 modify-managed-prefix-list --prefix-list-id ${prefix-list-id} \
+          aws ec2 modify-managed-prefix-list --prefix-list-id ${PREFIX_LIST_ID} \
             --remove-entries Cidr=54.239.134.0/23 \
             --current-version 1
 
@@ -47,3 +46,4 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'us-east-1'
+          PREFIX_LIST_ID: "pl-084b0f929311f681f"

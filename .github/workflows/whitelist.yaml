@@ -33,7 +33,7 @@ jobs:
           # use aws cli to update the prefix list with the values in whitelist.yaml
           # id of prefix list will be in SSM Parameter Store at key ssh/whitelist
           
-          aws ec2 modify-managed-prefix-list --prefix-list-id ("pl-63a5400a") \
+          aws ec2 modify-managed-prefix-list --prefix-list-id "pl-63a5400a" \
             --remove-entries {[]} \
             --add-entries {[]}
             --max-entries {0}

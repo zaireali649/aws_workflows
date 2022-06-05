@@ -34,11 +34,11 @@ jobs:
           # id of prefix list will be in SSM Parameter Store at key ssh/whitelist
           
           aws ec2 modify-managed-prefix-list --prefix-list-id "pl-63a5400a" \
-            --add-entries Cidr=54.239.134.0/23
+            --add-entries Cidr=54.239.134.0/23 \
             --current-version 1
 
           aws ec2 modify-managed-prefix-list --prefix-list-id "pl-63a5400a" \
-            --remove-entries Cidr=54.239.134.0/23
+            --remove-entries Cidr=54.239.134.0/23 \
             --current-version 1
 
         env:

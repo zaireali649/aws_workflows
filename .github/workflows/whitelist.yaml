@@ -29,7 +29,9 @@ jobs:
       - name: Run AWS Commands
         run: |
           echo  "aws ssm get-parameter --name "/ssh/whitelist" --query "Parameter.{Value:Value}" --output text" >> $prefix-list-id
-          
+          echo ${prefix-list-id}
+
+
           # use aws cli to update the prefix list with the values in whitelist.yaml
           # id of prefix list will be in SSM Parameter Store at key ssh/whitelist
           

@@ -26,9 +26,9 @@ jobs:
       - uses: actions/checkout@v3
 
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Run AWS Commands
         run: |
-          PREFIX_ID = aws ssm get-parameter --name "/ssh/whitelist" --query "Parameter.{Value:Value}" --output text        
+          EXPORT PREFIX_ID = aws ssm get-parameter --name "/ssh/whitelist" --query "Parameter.{Value:Value}" --output text        
           echo $PREFIX_ID
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}

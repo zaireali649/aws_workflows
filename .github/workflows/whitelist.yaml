@@ -28,18 +28,18 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run AWS Commands
         run: |
+          aws ssm get-parameter --name '/ssh/whitelist' --query 'Parameter.{Value:Value}' --output text
+          echo ${prefix_list-id}
 
-          aws ssm get-parameter --name '/ssh/whitelist' --query 'Parameter.{Value:Value}'
-          
-          
+
           # use aws cli to update the prefix list with the values in whitelist.yaml
           # id of prefix list will be in SSM Parameter Store at key ssh/whitelist
           
-          aws ec2 modify-managed-prefix-list --prefix-list-id "aws ssm get-parameter --name '/ssh/whitelist' --query 'Parameter.{Value:Value}'" \
+          aws ec2 modify-managed-prefix-list --prefix-list-id "aws ssm get-parameter --name '/ssh/whitelist' --query 'Parameter.{Value:Value}' --output text" \
             --add-entries Cidr=54.239.134.0/23 \
             --current-version 1
 
-          aws ec2 modify-managed-prefix-list --prefix-list-id ${PREFIX_LIST_ID} \
+          aws ec2 modify-managed-prefix-list --prefix-list-id ${prefix-list-id} \
             --remove-entries Cidr=54.239.134.0/23 \
             --current-version 1
 
